@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { CollapseDirective } from 'ngx-bootstrap';
+import { CollapseDirective, CollapseModule } from 'ngx-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './main/main.component';
 import { FavoritesComponent } from './favorites/favorites.component';
@@ -19,7 +19,7 @@ import { LoadSpinnerComponent } from './shared/load-spinner/load-spinner.compone
   declarations: [
     AppComponent,
     HeaderComponent,
-    CollapseDirective,
+    //CollapseDirective,
     MainComponent,
     FavoritesComponent,
     PageNotFoundComponent,
@@ -32,7 +32,8 @@ import { LoadSpinnerComponent } from './shared/load-spinner/load-spinner.compone
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CollapseModule
   ],
   providers: [],
   bootstrap: [AppComponent]
