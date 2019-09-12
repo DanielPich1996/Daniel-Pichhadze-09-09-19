@@ -15,8 +15,9 @@
                  [(ngModel)]="locationStr"
                  [pattern]="'[a-zA-Z ]+'"
                  ngModel
-                 (change)="autocomplete(f)">             
-                 <!-- (input)="autocomplete(f)"> -->
+                
+                 (input)="autocomplete(f)">
+                  <!-- (change)="autocomplete(f)">              -->
 
             <datalist id="searchStr">
                <option *ngFor="let location of locationOptions" 
