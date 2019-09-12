@@ -1,0 +1,8 @@
+<div class="col-lg-4  col-md-4 col-xs-12 col-sm-6" (click)="goToMain()">
+  <div class="card-weather">
+      <h1> {{ location.name }} </h1>
+      <h2> {{ weather.temperature + " C"}} </h2>
+      <img [src]="weather.iconUrl" height=100px;>
+      <h2> {{ weather.text }} </h2>
+  </div>    
+</div>

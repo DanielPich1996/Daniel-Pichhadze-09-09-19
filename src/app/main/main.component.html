@@ -1,0 +1,88 @@
+<div style="padding-top: 20px;">
+  <div class="row" style="margin: 0">
+    <div class="col-xs-10 col-xs-offset-1
+                col-sm-8 col-sm-offset-2 
+                col-md-6 col-md-offset-3 
+                col-lg-4 col-lg-offset-4">
+      
+        <form class="form-group" #f="ngForm" 
+              [ngClass]="f.valid ? '' : 'has-error'">
+          <p *ngIf="locationErr != null" class="alert alert-danger" role="alert" > {{ locationErr}} </p>
+          <input name="str"
+                 list="searchStr" 
+                 class="form-control"  
+                 placeholder="Search"
+                 [(ngModel)]="locationStr"
+                 [pattern]="'[a-zA-Z ]+'"
+                 ngModel
+                 (change)="autocomplete(f)">             
+                 <!-- (input)="autocomplete(f)"> -->
+
+            <datalist id="searchStr">
+               <option *ngFor="let location of locationOptions" 
+                       [value]="location.name">
+            </datalist>
+                
+          </form>  
+
+    </div>
+  </div>
+
+
+  <div class="row" style="margin: 0; margin-top: 10px" > 
+      
+    <div class="col-xs-10 col-xs-offset-1 
+                col-md-8 col-md-offset-2" 
+                *ngIf="weatherErr != null && location"> 
+                <p  class="alert alert-danger" 
+                role="alert" > {{ weatherErr }} </p> 
+    </div>  
+    <div class="col-xs-10 col-xs-offset-1 
+                col-md-8 col-md-offset-2" 
+                *ngIf="loadState"> 
+                <app-load-spinner></app-load-spinner>
+    </div> 
+      
+      <div class="col-xs-10 col-xs-offset-1 
+                  col-md-8 col-md-offset-2" 
+           style="border: 2px solid skyblue; border-radius: 15px;" 
+           *ngIf="weather && location && weatherErr == null">
+           
+        <div class="row" >
+          
+          <div class="col-xs-12 col-sm-6 col-sm-push-6 
+                      col-lg-6 col-lg-push-6">
+              <div>
+                <button class="btn" 
+                        [ngClass]="isFavorit ? 'btn-danger' : 'btn-success'"
+                        style="margin: 10px; float: right"
+                        (click)="onAddFavorit()"> 
+                        {{ isFavorit? 'Remove From Faverots' : 'Add To Faverots'  }}
+                </button> 
+                <span class="glyphicon"
+                      style="margin: 10px; float: right; font-size: 30px; color: #8B0000"
+                      [ngClass]="isFavorit ? 'glyphicon glyphicon-heart' : 'glyphicon glyphicon-heart-empty'">
+                </span>    
+              </div>       
+          </div>
+
+          <div class="col-xs-6 col-sm-3 col-sm-pull-6 col-lg-2 col-lg-pull-6">
+              <img [src]="weather.iconUrl" style="margin-top: 10px; height: 100px;">  
+          </div>
+          <div class="col-xs-6 col-sm-3 col-sm-pull-6 col-lg-4 col-lg-pull-6">
+              <h3 style="margin-top: 20px"> {{ location.name }} </h3>
+              <h3> {{weather.temperature + " C"}} </h3>  
+          </div> 
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            <h1 style="text-align: center">{{weather.text}}</h1>
+          </div>
+        </div>
+
+        <div>
+            <app-weather-day  *ngFor="let weat of weatherArray" [weather]="weat"></app-weather-day>  
+        </div>
+    </div>
+  </div>

@@ -1,0 +1,7 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-header (lightChange)="onlightModde()"></app-header>
+<div [ngClass]="isDarkMode ? 'dark-mode' : ''"  >
+    
+    <router-outlet></router-outlet>
+</div>
+
